@@ -9,7 +9,7 @@ CONTRIBUTORS:
 '''
 
 #Lists
-questTypes=['Low Rank','High Rank','Master Rank']
+questTypes=['Low Rank','High Rank','Master Rank'] #I admit, World was my first Monster Hunter. I thought I would like the non-separated LR>HR>G format a lot better than jumping from Village to Hub, but I actually think Rise's quest system was a lot more fun! I miss investigations from World tho
 lrMonsters=['Anjanath','Barroth','Diablos','Great Girros','Great Jagras','Jyuratodus','Kirin','Kulu-Ya-Ku','Legiana','Odogaron','Paolumu','Pukei-Pukei','Radobaan','Rathalos','Rathian','Tobi-Kadachi','Tzitzi-Ya-Ku']
 hrMonsters=['Anjanath','Barroth','Diablos','Great Girros','Great Jagras','Jyuratodus','Kirin','Kulu-Ya-Ku','Legiana','Odogaron','Paolumu','Pukei-Pukei','Radobaan','Rathalos','Rathian','Tobi-Kadachi','Tzitzi-Ya-Ku',
 #HR Exclusives:
@@ -23,11 +23,11 @@ weapons=['Hammer','Charge Blade','Greatsword','Hunting Horn','Longsword','Lance'
 global window
 window=Tk()
 window.title("MHWorld: Random Hunt Chooser")
-window.geometry('180x150')
+window.geometry('350x160')
 window.resizable(0,0)
 
 #Options
-options=Frame(window)
+options=Frame(window) #Options feels like a better word than 'selections.' 
 questChoice=StringVar(window)
 questChoice.set('Low Rank')
 choose=OptionMenu(options,questChoice,*questTypes)
@@ -39,14 +39,30 @@ rollBtn=Button(options,text="Roll Hunt")
 hunt=Label(options,text="Your rolled hunt \nwill go here!")
 wepRoll=Label(options)
 
+#Monster Icons
+defaultIcon=PhotoImage(file='icons/Unknown.png')
+ico=Label(window,image=defaultIcon)
+
 #Hunt Command
 def rolltime():
-  if questChoice.get()=='Low Rank': #questChoice is also the variable that is looked at when determining what kind of hunt to do.
-    hunt.configure(text="Low Rank:\n"+random.choice(lrMonsters))
+  if questChoice.get()=='Low Rank':
+    monster=random.choice(lrMonsters)
+    newIcon=PhotoImage(file='icons/'+monster+'.png')
+    ico.configure(image=newIcon)
+    ico.image=newIcon
+    hunt.configure(text="Low Rank:\n"+monster)
   if questChoice.get()=='High Rank':
-    hunt.configure(text="High Rank:\n"+random.choice(hrMonsters))
+    monster=random.choice(hrMonsters)
+    newIcon=PhotoImage(file='icons/'+monster+'.png')
+    ico.configure(image=newIcon)
+    ico.image=newIcon
+    hunt.configure(text="High Rank:\n"+monster)
   if questChoice.get()=='Master Rank':
-    hunt.configure(text="Master Rank:\n"+random.choice(mrMonsters))
+    monster=random.choice(mrMonsters)
+    newIcon=PhotoImage(file='icons/'+monster+'.png')
+    ico.configure(image=newIcon)
+    ico.image=newIcon
+    hunt.configure(text="Master Rank:\n"+monster)
   if wep.get()==1:
     wepRoll.configure(text="Weapon: "+random.choice(weapons))
   else:
@@ -55,11 +71,12 @@ def rolltime():
 rollBtn.configure(command=rolltime)
 
 #Pack
-options.pack(pady=2,padx=2)
+options.pack(pady=2,padx=2, side=LEFT)
 choose.pack()
 wepCheck.pack()
 rollBtn.pack(pady=2)
 hunt.pack(pady=3)
 wepRoll.pack()
+ico.pack(side=RIGHT)
 
 window.mainloop()
