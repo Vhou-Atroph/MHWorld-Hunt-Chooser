@@ -2,7 +2,7 @@ from tkinter import *
 import random
 
 '''
-VERSION 1.1.1
+VERSION 1.1.2
 
 CONTRIBUTORS:
 -Vhou-Atroph
@@ -25,6 +25,7 @@ window=Tk()
 window.title("MHWorld: Random Hunt Chooser")
 window.geometry('350x175')
 window.resizable(0,0)
+window.iconbitmap("icons/aptonoth.ico")
 
 #Options
 options=Frame(window) #Options feels like a better word than 'selections.' 
