@@ -2,7 +2,7 @@ from tkinter import *
 import random
 
 '''
-VERSION 1.1
+VERSION 1.1.1
 
 CONTRIBUTORS:
 -Vhou-Atroph
@@ -23,7 +23,7 @@ weapons=['Hammer','Charge Blade','Greatsword','Hunting Horn','Longsword','Lance'
 global window
 window=Tk()
 window.title("MHWorld: Random Hunt Chooser")
-window.geometry('350x160')
+window.geometry('350x175')
 window.resizable(0,0)
 
 #Options
@@ -36,8 +36,9 @@ wepCheck=Checkbutton(options, text="Random weapon", variable=wep, onvalue=1, off
 rollBtn=Button(options,text="Roll Hunt")
 
 #Chosen Hunt
-hunt=Label(options,text="Your rolled hunt \nwill go here!")
-wepRoll=Label(options)
+results=Frame(options)
+hunt=Label(results,text="Your rolled hunt \nwill go here!")
+wepRoll=Label(results)
 
 #Monster Icons
 defaultIcon=PhotoImage(file='icons/Unknown.png')
@@ -64,9 +65,9 @@ def rolltime():
     ico.image=newIcon
     hunt.configure(text="Master Rank:\n"+monster)
   if wep.get()==1:
-    wepRoll.configure(text="Weapon: "+random.choice(weapons))
+    wepRoll.configure(text="Weapon:\n"+random.choice(weapons))
   else:
-    wepRoll.configure(text="Weapon: Your choice!")
+    wepRoll.configure(text="")
 
 rollBtn.configure(command=rolltime)
 
@@ -75,6 +76,7 @@ options.pack(pady=2,padx=2, side=LEFT)
 choose.pack()
 wepCheck.pack()
 rollBtn.pack(pady=2)
+results.pack()
 hunt.pack(pady=3)
 wepRoll.pack()
 ico.pack(side=RIGHT)
