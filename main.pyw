@@ -2,7 +2,7 @@ from tkinter import *
 import random
 
 '''
-VERSION 1.1.2
+VERSION 1.1.3
 
 CONTRIBUTORS:
 -Vhou-Atroph
