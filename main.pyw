@@ -38,7 +38,10 @@ rollBtn=Button(options,text="Roll Hunt")
 
 #Chosen Hunt
 results=Frame(options)
-hunt=Label(results,text="Your rolled hunt \nwill go here!")
+hunt=Label(results,font=('Arial',8,'bold'),width=20)
+questMonster=Label(results,text="Your rolled hunt \nwill go here!")
+
+wepLabel=Label(results,font=('Arial',8,'bold'),width=20)
 wepRoll=Label(results)
 
 #Monster Icons
@@ -52,23 +55,32 @@ def rolltime():
     newIcon=PhotoImage(file='icons/'+monster+'.png')
     ico.configure(image=newIcon)
     ico.image=newIcon
-    hunt.configure(text="Low Rank:\n"+monster)
+    hunt.configure(text="Low Rank:")
+    questMonster.configure(text=monster)
+    
   if questChoice.get()=='High Rank':
     monster=random.choice(hrMonsters)
     newIcon=PhotoImage(file='icons/'+monster+'.png')
     ico.configure(image=newIcon)
     ico.image=newIcon
-    hunt.configure(text="High Rank:\n"+monster)
+    hunt.configure(text="High Rank:")
+    questMonster.configure(text=monster)
+    
   if questChoice.get()=='Master Rank':
     monster=random.choice(mrMonsters)
     newIcon=PhotoImage(file='icons/'+monster+'.png')
     ico.configure(image=newIcon)
     ico.image=newIcon
-    hunt.configure(text="Master Rank:\n"+monster)
+    hunt.configure(text="Master Rank:")
+    questMonster.configure(text=monster)
+    
   if wep.get()==1:
-    wepRoll.configure(text="Weapon:\n"+random.choice(weapons))
+    wepLabel.configure(text="Weapon:")
+    wepRoll.configure(text=random.choice(weapons))
+    
   else:
-    wepRoll.configure(text="")
+    wepLabel.configure(text="")
+    wepRoll.configure(text="\n")
 
 rollBtn.configure(command=rolltime)
 
@@ -78,7 +90,9 @@ choose.pack()
 wepCheck.pack()
 rollBtn.pack(pady=2)
 results.pack()
-hunt.pack(pady=3)
+hunt.pack()
+questMonster.pack()
+wepLabel.pack()
 wepRoll.pack()
 ico.pack(side=RIGHT)
 
